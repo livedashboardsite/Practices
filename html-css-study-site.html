@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HTML & CSS Study Site</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&display=swap">
+<style>
+:root{--bg:#eef2f7;--card:#fff;--ink:#14213d;--mute:#4a5872;--line:#c9d3e2;--acc:#ffc93c;--acc2:#2b59c3;--code:#101a30;--codeink:#dbe6ff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1526;--card:#182038;--ink:#e8eefc;--mute:#9db0d3;--line:#2b3a5e;--acc2:#7fa2ff}}
+:root[data-theme="dark"]{--bg:#0f1526;--card:#182038;--ink:#e8eefc;--mute:#9db0d3;--line:#2b3a5e;--acc2:#7fa2ff}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Bricolage Grotesque",system-ui,sans-serif}
+/* nav: flexbox + sticky */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--ink);overflow-x:auto}
+.nav b{color:var(--acc);white-space:nowrap;margin-right:8px}
+.nav a{color:#fff;text-decoration:none;white-space:nowrap;padding:4px 10px;border-radius:99px;font-size:14px}
+.nav a:hover{background:var(--acc);color:#14213d}
+.hero{max-width:860px;margin:0 auto;padding:48px 16px 8px}
+.hero h1{font-size:clamp(34px,7vw,60px);line-height:1.05;margin:0 0 12px;font-weight:800}
+.hero p{max-width:60ch;color:var(--mute)}
+main{max-width:860px;margin:0 auto;padding:0 16px 60px}
+section{margin-top:36px}
+h2{font-size:28px;margin:0 0 4px;border-left:8px solid var(--acc);padding-left:12px}
+.theory{color:var(--mute);margin:6px 0 14px;max-width:70ch}
+.demo{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto}
+pre{background:var(--code);color:var(--codeink);padding:12px 14px;border-radius:8px;overflow-x:auto;font:13px/1.5 ui-monospace,Consolas,monospace;margin:10px 0 0}
+.note{font-size:14px;color:var(--mute);margin:8px 0 0}
+label.ctl{display:inline-flex;gap:6px;align-items:center;margin:0 12px 8px 0;font-size:14px}
+select,input,textarea,button{font:inherit}
+.tag{background:var(--acc);color:#14213d;padding:0 6px;border-radius:4px;font-family:ui-monospace,monospace;font-size:.85em}
+
+/* demo-only styles (scoped) */
+.d-table,.d-table th,.d-table td{border:1px solid var(--ink);border-collapse:collapse}
+.d-table th,.d-table td{padding:8px}
+.d-table th{background:var(--acc);color:#14213d}
+.bd1{border:2px solid var(--acc2);margin:4px 0}
+.sp1{border:2px solid #d33}
+.c1{color:#2b59c3}.c2{color:green}.c2{color:darkorange}#sp{color:red}.imp{color:purple!important}
+.hl{background:yellow;padding:5px;color:#222}
+.card1 p{font-style:italic;border:2px solid var(--ink);padding:4px}
+.bm{background:lightblue;color:#14213d;border:5px solid #14213d;width:200px;height:60px;padding:20px;margin:20px;transition:none}
+.dsp span,.dsp div.x{background:#14213d;color:#fff;margin:5px;padding:10px}
+.pos-parent{position:relative;height:190px;border:3px solid var(--ink);margin-top:8px}
+.pos-box{background:#d33;color:#fff;padding:8px;width:150px}
+.pos-sib{background:#888;color:#fff;padding:8px;width:150px;margin:6px}
+.flex-box{display:flex;height:170px;border:3px solid var(--ink);gap:8px;padding:6px;background:var(--bg)}
+.flex-box div{background:var(--acc2);color:#fff;padding:12px;border-radius:6px}
+.flex-box div:nth-child(2){background:#c0392b}.flex-box div:nth-child(3){background:#1e8449}
+.row-mini{display:flex;border:3px solid var(--ink);height:110px;margin-top:10px}
+.row-mini div{padding:12px;color:#fff}
+</style>
+</head>
+<body>
+<nav class="nav">
+<b>HTML + CSS</b>
+<a href="#s1">Basics</a><a href="#s2">Links</a><a href="#s3">Lists</a><a href="#s4">Images</a><a href="#s5">Media</a><a href="#s6">Forms</a><a href="#s7">Tables</a><a href="#s8">div/span</a><a href="#s9">CSS</a><a href="#s10">Priority</a><a href="#s11">Box model</a><a href="#s12">Display</a><a href="#s13">Position</a><a href="#s14">Flexbox</a>
+</nav>
+
+<header class="hero">
+<h1>HTML & CSS, shown live</h1>
+<p>Every topic from your notes has a working example. Play with the controls, then read the code under it. Tip: press F12 (Inspect) to see each tag in the browser.</p>
+</header>
+
+<main>
+
+<section id="s1">
+<h2>1. HTML Basics</h2>
+<p class="theory">HTML gives a page its structure using tags. An element is opening tag + content + closing tag. Attributes go inside the opening tag.</p>
+<div class="demo">
+<h1 style="font-size:28px;margin:0">h1 Main heading</h1>
+<h2 style="font-size:22px;border:0;padding:0;margin:0">h2 Sub heading</h2>
+<h3 style="margin:0">h3 Smaller heading</h3>
+<p>This is a paragraph.</p>
+<p>Line one<br>Line two (after br)</p>
+<hr>
+<p>Text can be <b>bold</b>, <i>italic</i>, <u>underlined</u> or <mark>highlighted</mark>.</p>
+<p><strong>Warning:</strong> <em>this word</em> is emphasised.</p>
+<p>Water is H<sub>2</sub>O and area is r<sup>2</sup>.</p>
+<!-- comments are not shown by the browser -->
+</div>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Main Heading&lt;/h1&gt;
+  &lt;p&gt;Water is H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</section>
+
+<section id="s2">
+<h2>2. Anchor tag (links)</h2>
+<p class="theory">href is the address. target="_blank" opens a new tab. "#id" jumps to a section on the same page.</p>
+<div class="demo" id="linkdemo">
+<a href="https://www.wikipedia.org" target="_blank" title="Opens Wikipedia">Wikipedia (new tab, tooltip)</a><br>
+<a href="mailto:student@example.com">Send Email</a><br>
+<a href="tel:+919876543210">Call Us</a><br>
+<a href="#s3">Same-page link: jump to Lists section</a><br>
+<a href="about.html">Relative link (works only if about.html exists)</a>
+</div>
+<pre>&lt;a href="https://www.wikipedia.org" target="_blank"&gt;Wikipedia&lt;/a&gt;
+&lt;a href="mailto:a@b.com"&gt;Email&lt;/a&gt;
+&lt;a href="tel:+919876543210"&gt;Call&lt;/a&gt;
+&lt;a href="#contact"&gt;Go to section with id="contact"&lt;/a&gt;</pre>
+</section>
+
+<section id="s3">
+<h2>3. Lists</h2>
+<p class="theory">ul = bullets, ol = numbers, dl = term + description. Only li can sit directly inside ul/ol. For nesting, put the inner list inside an li.</p>
+<div class="demo">
+<ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+<ol type="A" start="3"><li>Starts from C</li><li>Then D</li></ol>
+<ol reversed><li>Three</li><li>Two</li><li>One</li></ol>
+<ul>
+<li>Frontend<ul><li>HTML</li><li>CSS</li></ul></li>
+<li>Backend<ol><li>Node.js</li><li>Express</li></ol></li>
+</ul>
+<dl><dt><b>HTML</b></dt><dd>Gives structure to a web page.</dd><dt><b>CSS</b></dt><dd>Gives style to a web page.</dd></dl>
+</div>
+<pre>&lt;ol type="A" start="3"&gt; ... &lt;/ol&gt;   &lt;!-- C, D --&gt;
+&lt;ol reversed&gt; ... &lt;/ol&gt;           &lt;!-- 3, 2, 1 --&gt;
+&lt;dl&gt;&lt;dt&gt;HTML&lt;/dt&gt;&lt;dd&gt;Gives structure&lt;/dd&gt;&lt;/dl&gt;</pre>
+</section>
+
+<section id="s4">
+<h2>4. Images</h2>
+<p class="theory">img is an empty element. src = where the image is, alt = text shown if it fails. Give only width to keep the shape. An image inside a link is clickable.</p>
+<div class="demo">
+<img width="160" alt="Blue sample picture" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%232b59c3'/%3E%3Ccircle cx='120' cy='30' r='14' fill='%23ffc93c'/%3E%3Cpath d='M0 100L50 45l40 55z' fill='%23fff' opacity='.8'/%3E%3C/svg%3E">
+<img src="wrong-name.jpg" alt="(alt text appears because the file is missing)">
+<figure style="margin:12px 0 0">
+<img width="120" alt="Sample photo" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80'%3E%3Crect width='120' height='80' fill='%231e8449'/%3E%3C/svg%3E">
+<figcaption>Figure 1: figure + figcaption</figcaption>
+</figure>
+</div>
+<pre>&lt;img src="images/photo.jpg" alt="Description" width="300"&gt;
+&lt;figure&gt;&lt;img src="a.jpg" alt="x"&gt;&lt;figcaption&gt;Caption&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;a href="https://google.com"&gt;&lt;img src="go.png" alt="Go"&gt;&lt;/a&gt;</pre>
+<p class="note">Paths: photo.jpg (same folder), images/photo.jpg (inside folder), ../photo.jpg (one folder up). Here the images are inline data so they work anywhere.</p>
+</section>
+
+<section id="s5">
+<h2>5. Video and audio</h2>
+<p class="theory">controls shows play/pause. autoplay needs muted. source lets the browser pick a format it supports; the text inside shows only if none work.</p>
+<div class="demo">
+<video width="300" controls poster="">
+<source src="movie.mp4" type="video/mp4">
+<source src="movie.webm" type="video/webm">
+Your browser does not support the video tag.
+</video>
+<audio controls><source src="song.mp3" type="audio/mpeg">Your browser does not support the audio tag.</audio>
+</div>
+<pre>&lt;video width="480" controls poster="thumb.jpg"&gt;
+  &lt;source src="movie.mp4" type="video/mp4"&gt;
+  Your browser does not support video.
+&lt;/video&gt;
+&lt;video autoplay muted loop src="movie.mp4"&gt;&lt;/video&gt;
+&lt;audio controls src="song.mp3"&gt;&lt;/audio&gt;</pre>
+<p class="note">The players are empty because movie.mp4 and song.mp3 are not here. Put your own files in the same folder to test.</p>
+</section>
+
+<section id="s6">
+<h2>6. Forms</h2>
+<p class="theory">Each input needs a name to be sent. label for = input id. Radios share one name; checkboxes allow many. Try submitting with an empty name to see required.</p>
+<div class="demo">
+<form action="" method="GET">
+<label for="name">Full Name:</label> <input type="text" id="name" name="fullname" placeholder="Enter your name" required><br><br>
+<label for="email">Email:</label> <input type="email" id="email" name="email" required><br><br>
+<label for="pass">Password:</label> <input type="password" id="pass" name="password" minlength="6"><br><br>
+<label for="age">Age:</label> <input type="number" id="age" name="age" min="16" max="60"><br><br>
+<label for="dob">Date of Birth:</label> <input type="date" id="dob" name="dob"><br><br>
+Mode: <input type="radio" id="online" name="mode" value="online"><label for="online">Online</label>
+<input type="radio" id="offline" name="mode" value="offline" checked><label for="offline">Offline</label><br><br>
+Skills: <input type="checkbox" id="html" name="skills" value="html"><label for="html">HTML</label>
+<input type="checkbox" id="css" name="skills" value="css"><label for="css">CSS</label>
+<input type="checkbox" id="js" name="skills" value="js"><label for="js">JavaScript</label><br><br>
+<label for="city">City:</label>
+<select id="city" name="city"><option value="">-- Select --</option><option value="delhi">Delhi</option><option value="mumbai">Mumbai</option></select><br><br>
+<label for="about">About you:</label><br><textarea id="about" name="about" rows="3" cols="30"></textarea><br><br>
+<label for="photo">Photo:</label> <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+<button type="submit">Register</button> <button type="reset">Clear</button>
+</form>
+</div>
+<pre>&lt;form action="/register" method="POST" enctype="multipart/form-data"&gt;
+  &lt;label for="name"&gt;Name&lt;/label&gt;
+  &lt;input type="text" id="name" name="fullname" required&gt;
+  &lt;input type="radio" name="mode" value="online"&gt;
+  &lt;select name="city"&gt;&lt;option value="delhi"&gt;Delhi&lt;/option&gt;&lt;/select&gt;
+  &lt;button type="submit"&gt;Register&lt;/button&gt;
+&lt;/form&gt;</pre>
+<p class="note">This demo uses method="GET" so the data appears in the address bar after Register. That is how to see what a form sends without a server.</p>
+</section>
+
+<section id="s7">
+<h2>7. Tables</h2>
+<p class="theory">tr = row, th = header cell, td = data cell. colspan merges columns, rowspan merges rows. Cells in the next row shrink by one when merged.</p>
+<div class="demo">
+<table class="d-table">
+<caption><b>Weekly Timetable</b></caption>
+<thead><tr><th>Day</th><th>10-11</th><th>11-12</th><th>12-1</th></tr></thead>
+<tbody>
+<tr><td>Monday</td><td>HTML</td><td>CSS</td><td rowspan="2">Lunch</td></tr>
+<tr><td>Tuesday</td><td colspan="2">JavaScript Lab</td></tr>
+</tbody>
+<tfoot><tr><td colspan="4">Lab sessions run for two periods.</td></tr></tfoot>
+</table>
+</div>
+<pre>&lt;td rowspan="2"&gt;Lunch&lt;/td&gt;      &lt;!-- covers 2 rows --&gt;
+&lt;td colspan="2"&gt;JavaScript Lab&lt;/td&gt; &lt;!-- covers 2 columns --&gt;
+
+table, th, td { border: 1px solid black; border-collapse: collapse; }
+th, td { padding: 8px; }</pre>
+</section>
+
+<section id="s8">
+<h2>8. div and span</h2>
+<p class="theory">div is a block container (new line, full width). span is inline (same line, only as wide as its content).</p>
+<div class="demo">
+<div style="background:lightblue;padding:10px;color:#14213d"><b>Section 1</b> - this div groups a heading and a paragraph.</div>
+<div style="background:lightgreen;padding:10px;color:#14213d">Price: <span style="color:red;font-weight:bold">Rs. 499</span> only.</div>
+<br>
+<div class="bd1">div 1</div><div class="bd1">div 2</div>
+<span class="sp1">span 1</span> <span class="sp1">span 2</span>
+</div>
+<pre>&lt;div style="background: lightblue;"&gt;...&lt;/div&gt;
+Price: &lt;span style="color: red;"&gt;Rs. 499&lt;/span&gt;</pre>
+</section>
+
+<section id="s9">
+<h2>9. CSS basics</h2>
+<p class="theory">selector { property: value; }. Three ways to add CSS: inline, internal (style tag), external (link tag). Class starts with a dot, id with #.</p>
+<div class="demo">
+<p style="color:darkred;font-weight:bold;margin:4px 0">Inline style: dark red bold.</p>
+<p class="hl">Class selector .hl: yellow background.</p>
+<p style="font-size:20px;color:navy;margin:4px 0" id="intro">Id selector #intro: larger and navy (shown inline here).</p>
+<div class="card1"><p>Descendant selector .card1 p: italic and boxed.</p></div>
+<p style="margin:6px 0"><a href="#s9" class="tag" style="text-decoration:none">a:hover</a> - hover over the link to see the pseudo-class in the nav bar above.</p>
+</div>
+<pre>* { font-family: Arial, sans-serif; }   /* universal */
+p { color: #333; }                      /* element */
+.highlight { background: yellow; }      /* class */
+#intro { color: navy; }                 /* id */
+h1, a { color: darkgreen; }             /* group */
+.card p { font-style: italic; }         /* descendant */
+.card > p { ... }                       /* direct child */
+a:hover { color: red; }                 /* pseudo-class */</pre>
+<p class="note">Units: px fixed, % of parent, em relative to parent font, rem relative to html (16px), vw/vh of the window. Colours: name, #hex, rgb(), rgba() (last value is transparency).</p>
+</section>
+
+<section id="s10">
+<h2>10. CSS priority</h2>
+<p class="theory">Order: !important wins, then higher specificity (inline > id > class > element), then the rule written later. Score as (ids, classes, elements).</p>
+<div class="demo">
+<p style="color:#2b59c3;margin:4px 0">Para 1: blue - only the element rule applies.</p>
+<p class="c2" style="margin:4px 0">Para 2: orange - class beats element; later .c2 beats earlier .c2.</p>
+<p class="c2" id="sp" style="margin:4px 0">Para 3: red - id beats class.</p>
+<p id="sp" style="color:brown;margin:4px 0">Para 4: brown - inline beats id.</p>
+<p class="imp" id="sp" style="color:brown;margin:4px 0">Para 5: purple - !important beats all.</p>
+</div>
+<pre>p { color: blue; }            /* (0,0,1) */
+.msg { color: green; }        /* (0,1,0) */
+#special { color: red; }      /* (1,0,0) */
+.msg { color: orange; }       /* same score, written later: wins over green */
+.imp { color: purple !important; }</pre>
+<p class="note">.note (0,1,0) beats div div p (0,0,3): compare left to right, the first bigger number wins. Inherited: color, font-*, line-height, text-align, list-style. Not inherited: margin, padding, border, width, height, background.</p>
+</section>
+
+<section id="s11">
+<h2>11. Box model</h2>
+<p class="theory">Content, then padding, border, margin. Default total width = width + padding + border. With border-box, width already includes padding and border. Drag the sliders.</p>
+<div class="demo">
+<label class="ctl">width <input type="range" id="bw" min="100" max="300" value="200"></label>
+<label class="ctl">padding <input type="range" id="bp" min="0" max="40" value="20"></label>
+<label class="ctl">border <input type="range" id="bb" min="0" max="15" value="5"></label>
+<label class="ctl">margin <input type="range" id="bmg" min="0" max="40" value="20"></label>
+<label class="ctl"><input type="checkbox" id="bs"> box-sizing: border-box</label>
+<div class="bm" id="bmbox">Box</div>
+<p id="bmout" class="note" style="margin:0"></p>
+</div>
+<pre>.box { width: 200px; padding: 20px; border: 5px solid black; margin: 30px; }
+/* content-box: 200+20+20+5+5 = 250px  |  border-box: 200px */
+margin: 10px 20px;         /* top/bottom, left/right */
+margin: 10px 20px 30px 40px; /* top right bottom left */
+margin: 0 auto;            /* centre a block that has a width */</pre>
+</section>
+
+<section id="s12">
+<h2>12. Display</h2>
+<p class="theory">block = new line, width works. inline = stays in line, width/height ignored. inline-block = stays in line, width works. none removes the element.</p>
+<div class="demo dsp">
+<label class="ctl">Change these 3 boxes to
+<select id="dsel"><option>block</option><option>inline</option><option>inline-block</option></select></label><br>
+<div class="x dbox" style="width:180px;height:40px">Box 1</div>
+<div class="x dbox" style="width:180px;height:40px">Box 2</div>
+<div class="x dbox" style="width:180px;height:40px">Box 3</div>
+<p class="note">Try inline: width and height are ignored.</p>
+<hr>
+<label class="ctl"><input type="checkbox" id="dnone"> display: none on B</label>
+<label class="ctl"><input type="checkbox" id="dvis"> visibility: hidden on B</label><br>
+<div class="x" id="dB" style="display:inline-block">A</div><div class="x" id="dBB" style="display:inline-block">B</div><div class="x" style="display:inline-block">C</div>
+</div>
+<pre>.hidden { display: none; }         /* space is removed */
+.invisible { visibility: hidden; } /* space stays empty */</pre>
+</section>
+
+<section id="s13">
+<h2>13. Position</h2>
+<p class="theory">static is default. relative moves from its own spot. absolute is placed inside the nearest positioned parent. fixed sticks to the window. sticky sticks while scrolling.</p>
+<div class="demo">
+<label class="ctl">Red box position
+<select id="psel"><option>static</option><option>relative</option><option>absolute</option><option>fixed</option><option>sticky</option></select></label>
+<p class="note" style="margin:0">The red box has top:20px; left:40px. The parent has position: relative. Fixed jumps to the window.</p>
+<div class="pos-parent">
+Parent (position: relative)
+<div class="pos-sib">Gray sibling</div>
+<div class="pos-box" id="pbox" style="top:20px;left:40px">Red box</div>
+<div class="pos-sib">Gray sibling 2</div>
+</div>
+</div>
+<pre>.parent { position: relative; }
+.child  { position: absolute; bottom: 10px; right: 10px; }
+.navbar { position: fixed; top: 0; z-index: 10; }
+.head   { position: sticky; top: 0; }</pre>
+<p class="note">This page's blue-black nav bar at the top is position: sticky.</p>
+</section>
+
+<section id="s14">
+<h2>14. Flexbox</h2>
+<p class="theory">display: flex on the parent. justify-content works on the main axis, align-items on the cross axis. With column direction they swap.</p>
+<div class="demo">
+<label class="ctl">flex-direction <select id="fd"><option>row</option><option>row-reverse</option><option>column</option><option>column-reverse</option></select></label>
+<label class="ctl">justify-content <select id="fj"><option>flex-start</option><option>flex-end</option><option>center</option><option>space-between</option><option>space-around</option><option>space-evenly</option></select></label>
+<label class="ctl">align-items <select id="fa"><option>stretch</option><option>flex-start</option><option>flex-end</option><option>center</option></select></label>
+<label class="ctl">flex-wrap <select id="fw"><option>nowrap</option><option>wrap</option></select></label>
+<div class="flex-box" id="fbox"><div>1</div><div>2</div><div>3</div></div>
+<h3 style="margin:16px 0 0">Item properties</h3>
+<div class="row-mini">
+<div style="background:navy;flex-grow:1">A grow 1</div>
+<div style="background:maroon;flex-grow:2">B grow 2</div>
+<div style="background:green;order:-1">C order -1</div>
+<div style="background:purple;align-self:flex-end">D align-self</div>
+</div>
+<p class="note">Screen order is C, A, B, D. B grows twice as much as A. D sits at the bottom.</p>
+<nav style="display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#1e2a38;color:#fff;margin-top:14px;border-radius:6px">
+<b>MySite</b><span style="display:flex;gap:20px"><span>Home</span><span>Courses</span><span>Contact</span></span></nav>
+<div style="display:flex;justify-content:center;align-items:center;height:110px;background:#e8eef5;color:#14213d;margin-top:10px;border-radius:6px">I am exactly in the center</div>
+</div>
+<pre>.navbar { display: flex; justify-content: space-between; align-items: center; }
+.cards  { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.center { display: flex; justify-content: center; align-items: center; height: 200px; }
+.a { flex-grow: 1; }  .c { order: -1; }  .d { align-self: flex-end; }</pre>
+</section>
+
+</main>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+/* box model */
+function bm(){
+var w=+$('bw').value,p=+$('bp').value,b=+$('bb').value,m=+$('bmg').value,bs=$('bs').checked,e=$('bmbox').style;
+e.width=w+'px';e.padding=p+'px';e.borderWidth=b+'px';e.margin=m+'px';e.boxSizing=bs?'border-box':'content-box';
+var tot=bs?w:w+2*p+2*b,cont=bs?w-2*p-2*b:w;
+$('bmout').textContent='width '+w+' | padding '+p+' | border '+b+' | margin '+m+' -> total width '+tot+'px, content '+Math.max(cont,0)+'px, space taken '+(tot+2*m)+'px';
+}
+['bw','bp','bb','bmg','bs'].forEach(function(i){$(i).addEventListener('input',bm)});bm();
+/* display */
+$('dsel').addEventListener('change',function(){
+document.querySelectorAll('.dbox').forEach(function(d){d.style.display=$('dsel').value});
+});
+function dv(){$('dBB').style.display=$('dnone').checked?'none':'inline-block';$('dBB').style.visibility=$('dvis').checked?'hidden':'visible'}
+$('dnone').addEventListener('change',dv);$('dvis').addEventListener('change',dv);
+/* position */
+$('psel').addEventListener('change',function(){$('pbox').style.position=$('psel').value});
+/* flex */
+function fx(){var s=$('fbox').style;s.flexDirection=$('fd').value;s.justifyContent=$('fj').value;s.alignItems=$('fa').value;s.flexWrap=$('fw').value}
+['fd','fj','fa','fw'].forEach(function(i){$(i).addEventListener('change',fx)});
+})();
+</script>
+</body>
+</html>
